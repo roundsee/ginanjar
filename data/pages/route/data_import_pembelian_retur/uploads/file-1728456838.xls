@@ -1,0 +1,94 @@
+ 
+
+<!-- pengaturan warna untuk Waroeng Steak -->
+
+  <style type="text/css">
+    .bg_primary_1{
+      background-color: #f8f850!important;
+      color: #212529!important;
+    }
+    .bg_primary_2{
+      background-color: #333333!important;
+      color: whitesmoke!important;
+    }
+    .bg_primary_3{
+      background-color: #f8f9fa!important;
+    }
+
+    .warna_primary_1{
+      color: #212529;
+    }
+    .warna_primary_2{
+      color: whitesmoke!important;
+    }
+    .warna_primary_3{
+      color: #f8f9fa;
+    }
+
+  </style>
+<br />
+<b>Notice</b>:  Undefined variable: judul_nilai in <b>C:\laragon\www\Workspace\emart_asta\data\pages\route\data_export\lap_pembelian_excel.php</b> on line <b>93</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: judul_area in <b>C:\laragon\www\Workspace\emart_asta\data\pages\route\data_export\lap_pembelian_excel.php</b> on line <b>93</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: judul_nilai in <b>C:\laragon\www\Workspace\emart_asta\data\pages\route\data_export\lap_pembelian_excel.php</b> on line <b>97</b><br />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Cetak Laporan</title>
+	
+</head>
+<body>
+
+    
+    <table id="example" class="table table-bordered table-striped">
+    <thead style="background-color: lightgray;font-size: 90%;" class="elevation-2">
+        <tr>
+            <th>No.</th>
+            <th>Tanggal</th>
+            <th>Kode Customer</th> 
+            <th>Kode Barang</th>
+            <th>QTY</th>
+            <th>Nilai</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr align="left">
+            <td>1</td>
+            <td>2024-10-08</td>
+            <td>1316</td> <!-- Tampilkan kd_cus -->
+            <td>11747234191</td>
+            <td>3</td>
+            <td>5550</td>
+        </tr>
+                <tr align="left">
+            <td>2</td>
+            <td>2024-10-08</td>
+            <td>1316</td> <!-- Tampilkan kd_cus -->
+            <td>100343</td>
+            <td>6</td>
+            <td>6660</td>
+        </tr>
+            </tbody>
+</table>
+
+<br><br>
+    <br>
+			<script> 
+				$(document).ready(function() {
+					$('#example').DataTable( {
+						dom: 'Bfrtip',
+						buttons: [
+							'copy', 'csv', 'excel', 'pdf', 'print'
+							]
+					} );
+				} );
+			</script>
+			
+
+		</body>
+
+
+		</html>
+
