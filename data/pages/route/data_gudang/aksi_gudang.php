@@ -28,7 +28,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 	//Hapus Staff
 	if ($route == 'gudang' and $act == 'hapus') {
 		//habpus staff di tebel employee
-		$hapus = mysqli_query($koneksi, "DELETE from gudang where id_gudang = '$_GET[id]'");
+		//$hapus = mysqli_query($koneksi, "DELETE from gudang where id_gudang = '$_GET[id]'");
 		if($hapus){
 			echo "<script>alert('Data berhasil Di Hapus')</script>";
 		}else{

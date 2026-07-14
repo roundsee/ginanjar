@@ -49,9 +49,9 @@
   <!--animate-->
   <link href="<?php echo $dir ;?>dist/css/animate.css" rel="stylesheet" type="text/css" media="all">
   <script src="<?php echo $dir ;?>dist/js/wow.min.js"></script>
-  <script>
+  <!-- <script>
    new WOW().init();
- </script>
+ </script> -->
  <!--//end-animate-->
 </head>
 <body class="skin-green layout-top-nav control-sidebar-slide-open layout-navbar-fixed layout-footer-fixed text-sm" style="height: auto;">

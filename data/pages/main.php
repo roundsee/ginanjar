@@ -104,9 +104,9 @@ if (empty($_SESSION['namauser']) and empty($_SESSION['passuser'])) {
 
 
     <!-- <script src="<?php echo $dir; ?>dist/js/wow.min.js"></script> -->
-    <script>
+    <!-- <script>
       new WOW().init();
-    </script>
+    </script> -->
     <!--//end-animate-->
 
     <style type="text/css">
@@ -266,6 +266,7 @@ if (empty($_SESSION['namauser']) and empty($_SESSION['passuser'])) {
                       <!-- <li><a href="main.php?route=invoice_pembelian&act&ide=<?php echo $_SESSION['employee_number']; ?>&asal=good_receiving" class="dropdown-item"><i class="fa-solid fa-caret-right"></i> INVOICE PEMBELIAN</a></li> -->
 
                     <?php } ?>
+                     <li><a href="main.php?route=upload_faktur_pajak&act&ide=<?php echo $_SESSION['employee_number']; ?>&asal=upload_faktur_pajak" class="dropdown-item"><i class="fa-solid fa-caret-right"></i> UPLOAD FAKTUR PAJAK</a></li>
                   </ul>
                 </li>
 
@@ -356,6 +357,7 @@ if (empty($_SESSION['namauser']) and empty($_SESSION['passuser'])) {
                     <li class="dropdown-divider"></li>
 
                     <li><a href="main.php?route=lap_pembelian&act&ide=<?php echo $_SESSION['employee_number']; ?>&asal=pb1" class="dropdown-item"><i class="fa-solid fa-caret-right"></i> Laporan Pembelian </a></li>
+                     <li><a href="main.php?route=lap_faktur_pajak&act&ide=<?php echo $_SESSION['employee_number']; ?>&asal=lap_faktur_pajak" class="dropdown-item"><i class="fa-solid fa-caret-right"></i> Laporan Faktur Pajak </a></li>
                     <li><a href="main.php?route=lap_biaya&act&ide=<?php echo $_SESSION['employee_number']; ?>&asal=lap_biaya" class="dropdown-item"><i class="fa-solid fa-caret-right"></i> Laporan Biaya </a></li>
                     <li class="dropdown-divider"></li>
 

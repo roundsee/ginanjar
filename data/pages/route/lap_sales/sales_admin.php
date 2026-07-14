@@ -555,6 +555,8 @@ if ($filter == 'kota') { 	?>
 						<th style="width: 400px;">Menu Code</th>
 						<th style="text-align:right ;width:80px;">Qty</th>
 						<th style="text-align: right;width: 100px;">Payment</th>
+						<th style="text-align: right;width: 100px;">Kode Supplier</th>
+						<th style="text-align: right;width: 100px;">Nama SUpplier</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -568,8 +570,9 @@ if ($filter == 'kota') { 	?>
 					sum(penjualan.subjumlah) as rekap_subjumlah
 					FROM penjualan 
 					join jenis_transaksi on jenis_transaksi.kd_jenis=penjualan.kd_aplikasi 
-					join alat_bayar on alat_bayar.kd_alat=penjualan.kd_alatbayar 
+					join alat_bayar on alat_bayar.kd_alat=penjualan.kd_alatbayar
 					WHERE penjualan.tanggal>='$tgl_awal' AND penjualan.tanggal <= '$tgl_akhir' +interval 1 day 
+					group by  penjualan.tarif_pb1
 					";
 
 					$sql = mysqli_query($koneksi, $query);
@@ -585,7 +588,8 @@ if ($filter == 'kota') { 	?>
 					$grand_pocer = $s1['rekap_pocer'];
 					$grand_subjumlah = $s1['rekap_subjumlah'];
 
-					$query = "SELECT barang.nama as brg_nama, sum(jualdetil.banyak) as rekap_jualdetil_banyak, sum(jualdetil.jumlah) as rekap_jualdetil_jumlah 
+
+					$query = "SELECT jualdetil.kd_brg,barang.nama as brg_nama, sum(jualdetil.banyak) as rekap_jualdetil_banyak, sum(jualdetil.jumlah) as rekap_jualdetil_jumlah 
 					FROM jualdetil 
 					join pelanggan on pelanggan.kd_cus=jualdetil.kd_cus 
 					join barang on barang.kd_brg=jualdetil.kd_brg
@@ -601,13 +605,47 @@ if ($filter == 'kota') { 	?>
 					$nilai_tunai_khusus = 0;
 
 					while ($s1 = mysqli_fetch_array($sql1)) {
-
+								$kd_brg= $s1['kd_brg'];
+								$last_supp ="select 
+										tgl_beli,kd_brg,p.kd_supp, s.nama, s.pkp
+									from 
+									pembelian p
+									join pembelian_detail pd on p.kd_beli = pd.kd_beli
+									join supplier s on s.kd_supp = p.kd_supp
+									where 
+									kd_brg = '$kd_brg'
+									order by tgl_beli desc
+									limit 1";
+									
+									$supp = mysqli_query($koneksi,$last_supp);
+									$supp = mysqli_fetch_array($supp);
+										$kd_supp="";
+										$nama_supp="";
+										$pkp =0;
+									if($supp){
+										$kd_supp=$supp['kd_supp'];
+										$nama_supp=$supp['nama'];
+										$pkp = $supp['pkp'];
+									}
 					?>
 						<tr align="left">
 							<td><?php echo $no; ?></td>
 							<td><?php echo $s1['brg_nama']; ?></td>
 							<td style="text-align: right;"><?php echo number_format($s1['rekap_jualdetil_banyak']); ?></td>
 							<td style="text-align: right;"><?php echo number_format($s1['rekap_jualdetil_jumlah']); ?></td>
+							<td><?php echo $kd_supp; ?></td>
+							<td><?php echo $nama_supp; ?></td>
+							<td align="center">
+							<?php if ($pkp == 1): ?>
+								<span style="display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; text-transform: uppercase;">
+									● PKP
+								</span>
+							<?php else: ?>
+								<span style="display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; background-color: #f8f9fa; color: #6c757d; border: 1px solid #dee2e6; text-transform: uppercase;">
+									○ NON-PKP
+								</span>
+							<?php endif; ?>
+						</td>
 						</tr>
 					<?php
 						$no++;

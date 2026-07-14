@@ -4,7 +4,7 @@ include "../../../../config/koneksi.php";
 include "../../../../config/fungsi_rupiah.php";
 include "../../../../config/library.php";
 include "../../../../config/fungsi_indotgl.php";
-
+include "logging.php";
 
 session_start();
 
@@ -302,6 +302,7 @@ include '../header_lap_mutasi.php';
       <tr style="font-weight: 600">
         <th align="center" width="40px">No</th>
         <th>Kode Invoice</th>
+        <th>No Faktur</th>
         <th>Kode Supplier</th>
         <th>Nama Supplier</th>
         <th>Tanggal</th>
@@ -323,29 +324,35 @@ include '../header_lap_mutasi.php';
       $subtotal_supplier = 0;
       $grand_total_all_suppliers = 0;
       $current_supplier = "";
-
-      $sql1 = mysqli_query($koneksi, "
-            SELECT 
-                pd.*, 
-                barang.nama, 
-                SUM(pembelian_detail.disc) AS tot_disc, 
-                pembelian.ppn, 
+         write_log("yyyyyyyy"); 
+      $qq="
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
                 pb.jumlah_datang AS jumlah_barang_datang, 
-                pembelian.tarif_ppn, 
-                supplier.nama AS nama_supp, 
-                supplier.kd_supp,
-                pembelian_invoice.tanggal_invoice
-            FROM $tabel2 pd
-            JOIN barang ON barang.kd_brg = pd.kd_brg
-            JOIN pembelian ON pembelian.kd_po = pd.kd_po
-            JOIN supplier ON supplier.kd_supp = pembelian.kd_supp
-            JOIN pembelian_invoice ON pembelian_invoice.no_invoice = pd.no_invoice
-            JOIN pembelian_detail ON pembelian_detail.kd_po = pd.kd_po AND pembelian_detail.kd_brg = pd.kd_brg
-            LEFT JOIN penerimaan_barang pb ON pb.kd_po = pd.kd_po AND pb.kd_brg = pd.kd_brg
-            WHERE pembelian_invoice.tanggal_invoice BETWEEN '$tgl_awal' AND '$tgl_akhir'
-            GROUP BY pd.kd_po, pd.kd_brg
-            ORDER BY kd_supp, tanggal_invoice ASC;
-        ");
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '$tgl_awal' AND '$tgl_akhir'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        ";
+        write_log($qq);
+      $sql1 = mysqli_query($koneksi, $qq);
+        
 
       if (!$sql1) {
         die("Query error: " . mysqli_error($koneksi));
@@ -379,6 +386,7 @@ include '../header_lap_mutasi.php';
         <tr>
           <td align="right"><?php echo $no; ?></td>
           <td align="left"><?php echo $s1['no_invoice']; ?></td>
+          <td align="left"><?php echo $s1['no_faktur']; ?></td>
           <td align="left"><?php echo $s1['kd_supp']; ?></td>
           <td align="left"><?php echo $s1['nama_supp']; ?></td>
           <td align="left"><?php echo $s1['tanggal_invoice']; ?></td>
@@ -424,6 +432,7 @@ include '../header_lap_mutasi.php';
       <tr style="font-weight: 600">
         <th align="center" width="40px">No</th>
         <th>Kode Invoice</th>
+        <th>No Faktur</th>
         <th>Kode Supplier</th>
         <th>Nama Supplier</th>
         <th>Tanggal</th>
@@ -445,29 +454,34 @@ include '../header_lap_mutasi.php';
       $subtotal_supplier = 0;
       $grand_total_all_suppliers = 0;
       $current_supplier = "";
-
-      $sql1 = mysqli_query($koneksi, "
+      $dd="
             SELECT 
-                pd.*, 
-                barang.nama, 
-                SUM(pembelian_detail.disc) AS tot_disc, 
-                pembelian.ppn, 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
                 pb.jumlah_datang AS jumlah_barang_datang, 
-                pembelian.tarif_ppn, 
-                supplier.nama AS nama_supp, 
-                supplier.kd_supp,
-                pembelian_invoice.tanggal_invoice
-            FROM $tabel2 pd
-            JOIN barang ON barang.kd_brg = pd.kd_brg
-            JOIN pembelian ON pembelian.kd_po = pd.kd_po
-            JOIN supplier ON supplier.kd_supp = pembelian.kd_supp
-            JOIN pembelian_invoice ON pembelian_invoice.no_invoice = pd.no_invoice
-            JOIN pembelian_detail ON pembelian_detail.kd_po = pd.kd_po AND pembelian_detail.kd_brg = pd.kd_brg
-            LEFT JOIN penerimaan_barang pb ON pb.kd_po = pd.kd_po AND pb.kd_brg = pd.kd_brg
-            WHERE pembelian_invoice.tanggal_invoice BETWEEN '$tgl_awal' AND '$tgl_akhir' AND pembelian.kd_supp = '$nilai'
-            GROUP BY pd.kd_po, pd.kd_brg
-            ORDER BY kd_supp, tanggal_invoice ASC;
-        ");
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '$tgl_awal' AND '$tgl_akhir' AND p.kd_supp = '$nilai'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        ";
+       write_log("xxxxxx"); 
+      write_log($dd);  
+      $sql1 = mysqli_query($koneksi, $dd);
 
       if (!$sql1) {
         die("Query error: " . mysqli_error($koneksi));
@@ -486,6 +500,7 @@ include '../header_lap_mutasi.php';
         <tr>
           <td align="right"><?php echo $no; ?></td>
           <td align="left"><?php echo $s1['no_invoice']; ?></td>
+          <td align="left"><?php echo $s1['no_faktur']; ?></td>
           <td align="left"><?php echo $s1['kd_supp']; ?></td>
           <td align="left"><?php echo $s1['nama_supp']; ?></td>
           <td align="left"><?php echo $s1['tanggal_invoice']; ?></td>
@@ -498,7 +513,7 @@ include '../header_lap_mutasi.php';
 
           <td>Pcs</td>
           <!-- <td align="right"><?php echo $s1['jml_pcs']; ?></td> -->
-          <td align="right"><?php echo number_format($s1[$ff4]); ?></td>
+          <td align="right"><?php echo number_format($s1['nilai']); ?></td>
           <!-- <td align="right"><?php echo number_format($s1['tot_disc']); ?></td> -->
           <!-- <td align="right"><?php echo number_format($nilai_pjk); ?></td> -->
           <td align="right"><?php echo number_format($subtotal); ?></td>

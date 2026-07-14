@@ -501,30 +501,30 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                             </thead>
                                                             <tbody>
                                                                 <?php
-                                                                $sql1 = mysqli_query($koneksi, "
-                                                                    SELECT pd.no_invoice,
-                                                                        pembelian_invoice.tanggal_invoice,
-                                                                        supplier.nama as nama_supplier,
-                                                                        supplier.term_of_payment,
-                                                                        SUM(pd.nilai * COALESCE(pb.jumlah_datang, 0)) AS total_nilai,
-                                                                        SUM(pembelian_detail.disc) AS total_disc,
-                                                                        pembelian.ppn, 
-                                                                        pembelian.tarif_ppn, 
-                                                                        pembelian_invoice.ongkir, 
-                                                                        pembelian_invoice.nilai_retur,
-                                                                        pd.kd_po
-                                                                    FROM pembelian_invoice_detail pd
-                                                                    JOIN pembelian_invoice ON pembelian_invoice.no_invoice = pd.no_invoice
-                                                                    JOIN pembelian ON pembelian.kd_po = pd.kd_po
-                                                                    JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp
-                                                                    JOIN pembelian_detail ON pembelian_detail.kd_po = pd.kd_po 
-                                                                                        AND pembelian_detail.kd_brg = pd.kd_brg
-                                                                    LEFT JOIN penerimaan_barang pb ON pb.kd_po = pd.kd_po 
-                                                                                                AND pb.kd_brg = pd.kd_brg
-                                                                    WHERE pembelian_invoice.status_payment <= 1 
-                                                                    AND pembelian_invoice.kd_supp = '$nilai'
-                                                                    GROUP BY pd.no_invoice
-                                                                ");
+                                                                $qqq="
+                                                                    SELECT pid.no_invoice,
+                                                                        pi.tanggal_invoice,
+                                                                        s.nama as nama_supplier,
+                                                                        s.term_of_payment,
+                                                                        SUM(pid.nilai * COALESCE(pb.jumlah_datang, 0)) AS total_nilai,
+                                                                        SUM(pd.disc) AS total_disc,
+                                                                        p.ppn, 
+                                                                        p.tarif_ppn, 
+                                                                        pi.ongkir, 
+                                                                        pi.nilai_retur,
+                                                                        pid.kd_po
+                                                                FROM pembelian_invoice pi
+                                                                join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+                                                                join pembelian p on p.kd_po  = pi.kd_po 
+                                                                join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+                                                                join supplier s on s.kd_supp =p.kd_supp 
+                                                                join barang b on b.kd_brg =pd.kd_brg 
+                                                                left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+                                                                    WHERE pi.status_payment <= 1 
+                                                                    AND pi.kd_supp = '$nilai'
+                                                                    GROUP BY pid.no_invoice
+                                                                ";
+                                                                $sql1 = mysqli_query($koneksi, $qqq);
 
                                                                 if (!$sql1) {
                                                                     die("Query Error: " . mysqli_error($koneksi));
@@ -571,7 +571,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                                         <td style="text-align:right;"><?php echo format_rupiah($hargatotal); ?></td>
                                                                         <td style="text-align:right;"><?php echo format_rupiah($sisaTagihan); ?></td>
 
-                                                                        <?php if ($login_hash == 2) { ?>
+                                                                        <?php if ($login_hash == 2 || $login_hash == 0) { ?>
                                                                             <td style="text-align: center;">
                                                                                 <a href="main.php?route=<?php echo $rute_detail2; ?>&act&id=<?php echo $s1['no_invoice']; ?>&asal=<?php echo $rute; ?>" title="edit Detail">
                                                                                     <button class="btn btn-primary btn-sm elevation-2" type="button" style="opacity: .7;" data-toggle="modal" data-target="#modalDetail<?php echo $s1['no_invoice']; ?>">

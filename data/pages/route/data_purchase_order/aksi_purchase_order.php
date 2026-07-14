@@ -113,9 +113,19 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 } else {
     include $dir . "config/koneksi.php";
     include $dir . "config/library.php";
+    include "logging.php";
 
     $route = $_GET['route'];
     $act = $_GET['act'];
+
+    $nofaktur=$_POST['nofaktur'];
+    if($nofaktur){
+        $route = $_POST['route'];
+        $kd_beli= $_POST['kd_beli'];
+        $act="updatenofaktur";
+    }
+    write_log($route);
+    write_log($act);
     //Hapus 
     if ($route == $tujuan and $act == 'hapus') {
 
@@ -241,5 +251,14 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 
         // echo "<script>alert('Data berhasil dihapus ');</script>";
         echo "<script>history.go(-1)</script>";
+    }elseif ($act=='updatenofaktur'){
+
+            $kd_beli = $_POST['kd_beli'];
+            $nofaktur = $_POST['nofaktur'];
+            write_log("kode beli: $kb_beli   Faktur: $nofaktur");
+            $sql ="update pembelian set no_faktur = '$nofaktur' where kd_beli = '$kd_beli'";
+        mysqli_query($koneksi, $sql);
+        echo "<script>alert('Data berhasil diubah.')</script>";
+            echo "<script>history.go(-1)</script>";
     }
 }

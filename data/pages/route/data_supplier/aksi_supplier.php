@@ -22,6 +22,7 @@ $f10 = 'kd_dispenda';
 $f11 = 'id_kat';
 $f12 = 'hari_pengiriman';
 $f13 = 'term_of_payment';
+$f14 = 'pkp';
 
 $j1 = 'Kode Supplier';
 $j2 = 'Nama Supplier';
@@ -36,6 +37,7 @@ $j10 = 'Dispenda';
 $j11 = 'Kode Kategori';
 $j12 = 'Hari Pengiriman';
 $j13 = 'Term Of payment';
+$j13 = 'pkp';
 
 
 $tabel2 = 'supplier_barang';
@@ -103,7 +105,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 		$kode = "SUPP-" . sprintf("%04s", $urutan);
 
 		$rs = mysqli_query($koneksi, "INSERT into $tabel (
-			$f1,$f2,$f3,$f4,$f5,$f7,$f8,$f9, $f12,$f13) 
+			$f1,$f2,$f3,$f4,$f5,$f7,$f8,$f9, $f12,$f13,$f14) 
 		values (
 			'" . $kode . "',
 			'" . $_POST[$f2] . "',
@@ -114,7 +116,8 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 			'" . $_POST[$f8] . "',
 			'" . $_POST[$f9] . "',
 			'" . $_POST[$f12] . "',
-			'" . $_POST[$f13] . "'
+			'". $_POST[$f13] . "',
+			'" . $_POST[$f14] . "'
 		)") or die(mysqli_error($koneksi));
 
 		echo "<script>window.location='../../main.php?route=supplier_barang&act&id=$kode'</script>";
@@ -130,7 +133,8 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 		$f8 = '$_POST[$f8]',
 		$f9 = '$_POST[$f9]',
 		$f12 = '$_POST[$f12]',
-		$f13 = '$_POST[$f13]'";
+		$f13 = '$_POST[$f13]',
+		$f14 = '$_POST[$f14]'";
 		$query .= "WHERE $f1 = '$_POST[$f1]' ";
 		$result = mysqli_query($koneksi, $query);
 

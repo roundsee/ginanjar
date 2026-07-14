@@ -22,6 +22,7 @@ $f10 = 'kd_dispenda';
 $f11 = 'id_kat';
 $f12 = 'hari_pengiriman';
 $f13 = 'term_of_payment';
+$f14 = 'pkp';
 
 $j1 = 'Kode Supplier';
 $j2 = 'Nama Supplier';
@@ -36,6 +37,7 @@ $j10 = 'Dispenda';
 $j11 = 'Kode Kategori';
 $j12 = 'Hari Pengiriman';
 $j13 = 'Term Of payment';
+$j14 = 'PKP';
 
 $tabel2 = 'kotabaru';
 $ff1 = 'kode';
@@ -112,6 +114,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                 <!-- <th><?php echo $j11; ?></th> -->
                                 <th><?php echo $j12; ?></th>
                                 <th><?php echo $j13; ?></th>
+                                <th>PKP</th>
                                 <th width="150px">Aksi</th>
                               </tr>
                             </thead>
@@ -120,7 +123,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 
                               // $sql1=mysqli_query($koneksi,"SELECT * from $tabel  order by $f1 desc");
 
-                              $query = "SELECT a.$f1,a.$f2,a.$f3,a.$f4,a.$f5,a.$f6,a.$f7,a.$f8,a.$f9,a.$f10,a.$f11,$f12,$f13,j.nama as nama_kota,k.nama as nama_area,ko.nama_kategori as nama_kat
+                              $query = "SELECT a.$f1,a.$f2,a.$f3,a.$f4,a.$f5,a.$f6,a.$f7,a.$f8,a.$f9,a.$f10,a.$f11,$f12,$f13,a.$f14,j.nama as nama_kota,k.nama as nama_area,ko.nama_kategori as nama_kat
                               from $tabel a
                              left join $tabel2 j on a.$f8=j.$ff1
                              left join $tabel3 k on a.$f9=k.$gg1
@@ -164,6 +167,18 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                   <!-- <td><?php echo '<i><small> ' . $s1['nama_kat'] . '</small></i>'; ?></td> -->
                                   <td><?php echo $s1[$f12]; ?></td>
                                   <td><?php echo $s1[$f13]; ?></td>
+                                  <td align="center">
+                                          <?php if ($s1['pkp'] == 1): ?>
+                                              <span style="display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; text-transform: uppercase;">
+                                                  ● PKP
+                                              </span>
+                                          <?php else: ?>
+                                              <span style="display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; background-color: #f8f9fa; color: #6c757d; border: 1px solid #dee2e6; text-transform: uppercase;">
+                                                  ○ NON-PKP
+                                              </span>
+                                          <?php endif; ?>
+                                      </td>
+                                  
                                   <td>
                                     <a href="main.php?route=<?php echo $rute_detail; ?>&act&id=<?php echo $s1[$f1]; ?>&asal=<?php echo $rute; ?>" title="edit Detail"> <button class="btn btn-primary btn-sm elevation-2" style="opacity: .7;"><i class="fa fa-check"></i> Edit</button></a>
 

@@ -480,21 +480,21 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                             <tbody>
                                                                 <?php
                                                                 $sql1 = mysqli_query($koneksi, "
-                                                               SELECT barang.nama, SUM(((pd.nilai* pb.jumlah_datang) - pembelian_detail.disc)+(pembelian.ppn * (((pd.nilai* pb.jumlah_datang) - pembelian_detail.disc)* pembelian.tarif_ppn / 100 )))+pembelian_invoice.ongkir - pembelian_invoice.nilai_retur as hargatotal,
-                                                               pembelian.kd_po,
-                                                               pembelian_invoice.tanggal_invoice,
-                                                               pembelian_invoice.no_invoice,
-                                                               supplier.nama as nama_supplier,
-                                                               supplier.term_of_payment
-                                                               FROM pembelian_invoice_detail pd
-                                                                JOIN barang ON barang.kd_brg = pd.kd_brg
-                                                                JOIN pembelian ON pembelian.kd_po = pd.kd_po
-                                                                JOIN pembelian_detail ON pembelian_detail.kd_po = pd.kd_po AND pembelian_detail.kd_brg = pd.kd_brg
-                                                                join pembelian_invoice ON pembelian_invoice.no_invoice = pd.no_invoice
-                                                                join supplier ON supplier.kd_supp = pembelian_invoice.kd_supp
-                                                                LEFT JOIN penerimaan_barang pb ON pb.kd_po = pd.kd_po AND pb.kd_brg = pd.kd_brg
-                                                                WHERE pembelian_invoice.status_payment <= 1 AND pembelian_invoice.tanggal_invoice BETWEEN '$tgl_awal' AND '$tgl_akhir'
-                                                                GROUP BY pd.kd_po;
+                                                               SELECT b.nama, SUM(((pid.nilai* pb.jumlah_datang) - pd.disc)+(p.ppn * (((pid.nilai* pb.jumlah_datang) - pd.disc)* p.tarif_ppn / 100 )))+pi.ongkir - pi.nilai_retur as hargatotal,
+                                                               p.kd_po,
+                                                               pi.tanggal_invoice,
+                                                               pi.no_invoice,
+                                                               s.nama as nama_supplier,
+                                                               s.term_of_payment
+                                                                FROM pembelian_invoice pi
+                                                                join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+                                                                join pembelian p on p.kd_po  = pi.kd_po 
+                                                                join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+                                                                join supplier s on s.kd_supp =p.kd_supp 
+                                                                join barang b on b.kd_brg =pd.kd_brg 
+                                                                left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+                                                                WHERE pi.status_payment <= 1 AND pi.tanggal_invoice BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                                                GROUP BY p.kd_po;
                                                             ");
 
                                                             

@@ -1,0 +1,389 @@
+[09:56:26] [INFO]: Aksi payment accessed by user: 
+[09:56:26] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:56:26] [INFO]: Database connection established and helper functions included.
+[09:56:26] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0151
+[09:56:32] [INFO]: Memasuki halaman payment_tambah.php
+[09:56:32] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='3184'
+[09:56:32] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='3184' 
+[09:56:32] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '3184'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:56:37] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:56:40] [INFO]: Aksi payment accessed by user: 
+[09:56:40] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:56:40] [INFO]: Database connection established and helper functions included.
+[09:56:40] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"3184","no_invoice":"PO-5450","kd_po":{"1":"PO-5450","2":"PO-5450","3":"PO-5450","4":"PO-5450","5":"PO-5450","6":"PO-5450"},"nama_supplier":"PANJUNAN","ppn":"0","tanggal_payment":"2026-06-14","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"760750","status_lunas":"LUNAS","id":{"1":"3184","2":"3184","3":"3184","4":"3184","5":"3184","6":"3184"},"kd_brg":{"1":"4897144700295","2":"8809601379018","3":"8809618369651","4":"8809622345665","5":"8809688753909","6":"8809698873345"},"jumlah_datang":{"1":"3","2":"6","3":"2","4":"3","5":"2","6":"3"},"jumlah":{"1":"3","2":"6","3":"2","4":"3","5":"2","6":"3"},"harga":{"1":"24,650","2":"38,250","3":"24,650","4":"38,250","5":"84,150","6":"41,650"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0"},"subtotal":{"1":"73,950","2":"229,500","3":"49,300","4":"114,750","5":"168,300","6":"124,950"}}
+[09:56:40] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:56:40] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:56:40] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '3184'
+[09:56:57] [INFO]: Memasuki halaman payment_tambah.php
+[09:56:57] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='91506'
+[09:56:57] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='91506' 
+[09:56:57] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '91506'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:57:03] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:57:07] [INFO]: Aksi payment accessed by user: 
+[09:57:07] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:57:07] [INFO]: Database connection established and helper functions included.
+[09:57:07] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"91506","no_invoice":"PO-5430","kd_po":{"1":"PO-5430","2":"PO-5430","3":"PO-5430","4":"PO-5430","5":"PO-5430","6":"PO-5430","7":"PO-5430","8":"PO-5430","9":"PO-5430","10":"PO-5430","11":"PO-5430","12":"PO-5430"},"nama_supplier":"PANJUNAN","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"1674384","status_lunas":"LUNAS","id":{"1":"91506","2":"91506","3":"91506","4":"91506","5":"91506","6":"91506","7":"91506","8":"91506","9":"91506","10":"91506","11":"91506","12":"91506"},"kd_brg":{"1":"8993200661299","2":"8993200661305","3":"8993200661336","4":"8993200661657","5":"8993200666133","6":"8993200666201","7":"8993200666836","8":"8993200666935","9":"8993200666942","10":"8993200666959","11":"8993200669264","12":"8993200669417"},"jumlah_datang":{"1":"12","2":"12","3":"12","4":"12","5":"24","6":"24","7":"24","8":"24","9":"24","10":"24","11":"24","12":"24"},"jumlah":{"1":"12","2":"12","3":"12","4":"12","5":"24","6":"24","7":"24","8":"24","9":"24","10":"24","11":"24","12":"24"},"harga":{"1":"7,130","2":"7,130","3":"7,130","4":"7,130","5":"5,500","6":"5,500","7":"5,650","8":"8,260","9":"8,099","10":"8,099","11":"7,199","12":"7,199"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0"},"subtotal":{"1":"85,560","2":"85,560","3":"85,560","4":"85,560","5":"132,000","6":"132,000","7":"135,600","8":"198,240","9":"194,376","10":"194,376","11":"172,776","12":"172,776"}}
+[09:57:07] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:57:07] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:57:07] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '91506'
+[09:57:27] [INFO]: Memasuki halaman payment_tambah.php
+[09:57:27] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='1450'
+[09:57:27] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='1450' 
+[09:57:27] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '1450'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:57:32] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:57:36] [INFO]: Aksi payment accessed by user: 
+[09:57:36] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:57:36] [INFO]: Database connection established and helper functions included.
+[09:57:36] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"1450","no_invoice":"PO-5466","kd_po":{"1":"PO-5466","2":"PO-5466","3":"PO-5466","4":"PO-5466","5":"PO-5466","6":"PO-5466","7":"PO-5466"},"nama_supplier":"PANJUNAN","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"1109712","status_lunas":"LUNAS","id":{"1":"1450","2":"1450","3":"1450","4":"1450","5":"1450","6":"1450","7":"1450"},"kd_brg":{"1":"8997218380005","2":"8997218380401","3":"8997240600409","4":"8997240602854","5":"8999999000059","6":"8999999000165","7":"8999999000189"},"jumlah_datang":{"1":"12","2":"12","3":"12","4":"120","5":"180","6":"120","7":"72"},"jumlah":{"1":"12","2":"12","3":"12","4":"120","5":"180","6":"120","7":"72"},"harga":{"1":"8,500","2":"6,950","3":"5,730","4":"2,637","5":"850","6":"850","7":"3,946"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0"},"subtotal":{"1":"102,000","2":"83,400","3":"68,760","4":"316,440","5":"153,000","6":"102,000","7":"284,112"}}
+[09:57:36] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:57:36] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:57:36] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '1450'
+[09:57:42] [INFO]: Memasuki halaman payment_tambah.php
+[09:57:42] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='91581'
+[09:57:42] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='91581' 
+[09:57:42] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '91581'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:57:47] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:57:50] [INFO]: Aksi payment accessed by user: 
+[09:57:50] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:57:50] [INFO]: Database connection established and helper functions included.
+[09:57:50] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"91581","no_invoice":"PO-5429","kd_po":{"1":"PO-5429","2":"PO-5429","3":"PO-5429","4":"PO-5429","5":"PO-5429"},"nama_supplier":"PANJUNAN","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"660288","status_lunas":"LUNAS","id":{"1":"91581","2":"91581","3":"91581","4":"91581","5":"91581"},"kd_brg":{"1":"8992858658316","2":"8992858664706","3":"8993058108502","4":"8993058300500","5":"8993058300807"},"jumlah_datang":{"1":"12","2":"12","3":"24","4":"150","5":"150"},"jumlah":{"1":"12","2":"12","3":"24","4":"150","5":"150"},"harga":{"1":"7,992","2":"8,262","3":"1,560","4":"1,426","5":"1,426"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0"},"subtotal":{"1":"95,904","2":"99,144","3":"37,440","4":"213,900","5":"213,900"}}
+[09:57:50] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:57:50] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:57:50] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '91581'
+[09:58:02] [INFO]: Aksi payment accessed by user: 
+[09:58:02] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:58:02] [INFO]: Database connection established and helper functions included.
+[09:58:02] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0050
+[09:58:04] [INFO]: Memasuki halaman payment_tambah.php
+[09:58:04] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='600581'
+[09:58:04] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='600581' 
+[09:58:04] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '600581'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:58:10] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:58:13] [INFO]: Aksi payment accessed by user: 
+[09:58:13] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:58:13] [INFO]: Database connection established and helper functions included.
+[09:58:13] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"600581","no_invoice":"PO-5571","kd_po":{"1":"PO-5571","2":"PO-5571","3":"PO-5571","4":"PO-5571","5":"PO-5571","6":"PO-5571","7":"PO-5571","8":"PO-5571"},"nama_supplier":"COCA COLA","ppn":"0","tanggal_payment":"2026-06-11","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"663756","status_lunas":"LUNAS","id":{"1":"600581","2":"600581","3":"600581","4":"600581","5":"600581","6":"600581","7":"600581","8":"600581"},"kd_brg":{"1":"8992761002022","2":"8992761122324","3":"8992761146993","4":"8992761147006","5":"8992761164539","6":"8992761164546","7":"8992761166038","8":"8992761166052"},"jumlah_datang":{"1":"36","2":"12","3":"12","4":"12","5":"12","6":"24","7":"24","8":"12"},"jumlah":{"1":"36","2":"12","3":"12","4":"12","5":"12","6":"24","7":"24","8":"12"},"harga":{"1":"4,041","2":"5,050","3":"4,500","4":"4,500","5":"5,558","6":"5,558","7":"4,633","8":"3,200"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0"},"subtotal":{"1":"145,476","2":"60,600","3":"54,000","4":"54,000","5":"66,696","6":"133,392","7":"111,192","8":"38,400"}}
+[09:58:13] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:58:13] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:58:13] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '600581'
+[09:58:22] [INFO]: Aksi payment accessed by user: 
+[09:58:22] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:58:22] [INFO]: Database connection established and helper functions included.
+[09:58:22] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0001
+[09:58:29] [INFO]: Memasuki halaman payment_tambah.php
+[09:58:29] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='31.5.26'
+[09:58:29] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='31.5.26' 
+[09:58:29] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '31.5.26'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:58:36] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:58:40] [INFO]: Aksi payment accessed by user: 
+[09:58:40] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:58:40] [INFO]: Database connection established and helper functions included.
+[09:58:40] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"31.5.26","no_invoice":"PO-5569","kd_po":{"1":"PO-5569"},"nama_supplier":"A APEK","ppn":"0","tanggal_payment":"2026-05-31","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"1400000","status_lunas":"LUNAS","id":{"1":"31.5.26"},"kd_brg":{"1":"55555"},"jumlah_datang":{"1":"500"},"jumlah":{"1":"500"},"harga":{"1":"2,800"},"diskon":{"1":"0"},"subtotal":{"1":"1,400,000"}}
+[09:58:40] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2605%' ORDER BY no_payment DESC LIMIT 1
+[09:58:40] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:58:40] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '31.5.26'
+[09:58:50] [INFO]: Aksi payment accessed by user: 
+[09:58:50] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:58:50] [INFO]: Database connection established and helper functions included.
+[09:58:50] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0002
+[09:58:55] [INFO]: Memasuki halaman payment_tambah.php
+[09:58:55] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='100626'
+[09:58:55] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='100626' 
+[09:58:55] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '100626'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:59:01] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:59:04] [INFO]: Aksi payment accessed by user: 
+[09:59:04] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:59:04] [INFO]: Database connection established and helper functions included.
+[09:59:04] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"100626","no_invoice":"PO-5568","kd_po":{"1":"PO-5568"},"nama_supplier":"AA AGEN SUBDIST AQUA","ppn":"0","tanggal_payment":"2026-06-10","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"551000","status_lunas":"LUNAS","id":{"1":"100626"},"kd_brg":{"1":"22222"},"jumlah_datang":{"1":"29"},"jumlah":{"1":"29"},"harga":{"1":"19,000"},"diskon":{"1":"0"},"subtotal":{"1":"551,000"}}
+[09:59:04] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:59:04] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:59:04] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '100626'
+[09:59:25] [INFO]: Aksi payment accessed by user: 
+[09:59:25] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:59:25] [INFO]: Database connection established and helper functions included.
+[09:59:25] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0036
+[09:59:33] [INFO]: Aksi payment accessed by user: 
+[09:59:33] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:59:33] [INFO]: Database connection established and helper functions included.
+[09:59:33] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0035
+[09:59:39] [INFO]: Memasuki halaman payment_tambah.php
+[09:59:39] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='04593'
+[09:59:39] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='04593' 
+[09:59:39] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '04593'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[09:59:45] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[09:59:49] [INFO]: Aksi payment accessed by user: 
+[09:59:49] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[09:59:49] [INFO]: Database connection established and helper functions included.
+[09:59:49] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"04593","no_invoice":"PO-5339","kd_po":{"1":"PO-5339","2":"PO-5339","3":"PO-5339","4":"PO-5339","5":"PO-5339","6":"PO-5339","7":"PO-5339","8":"PO-5339","9":"PO-5339","10":"PO-5339","11":"PO-5339"},"nama_supplier":"BSP HILO","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"540585","status_lunas":"LUNAS","id":{"1":"04593","2":"04593","3":"04593","4":"04593","5":"04593","6":"04593","7":"04593","8":"04593","9":"04593","10":"04593","11":"04593"},"kd_brg":{"1":"4968306479660","2":"8998899001579","3":"8998899001623","4":"8998899001920","5":"8998899004105","6":"8998899013015","7":"8998899013077","8":"8998899088990","9":"8998899995090","10":"8998899995397","11":"8998899995601"},"jumlah_datang":{"1":"3","2":"20","3":"20","4":"20","5":"4","6":"12","7":"1","8":"2","9":"1","10":"2","11":"2"},"jumlah":{"1":"3","2":"20","3":"20","4":"20","5":"4","6":"12","7":"1","8":"2","9":"1","10":"2","11":"2"},"harga":{"1":"11,306","2":"3,959","3":"3,959","4":"3,959","5":"1,300","6":"3,161","7":"11,871","8":"29,059","9":"39,770","10":"29,059","11":"29,059"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0"},"subtotal":{"1":"33,918","2":"79,180","3":"79,180","4":"79,180","5":"5,200","6":"37,932","7":"11,871","8":"58,118","9":"39,770","10":"58,118","11":"58,118"}}
+[09:59:49] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[09:59:49] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[09:59:49] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '04593'
+[10:00:00] [INFO]: Aksi payment accessed by user: 
+[10:00:00] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[10:00:00] [INFO]: Database connection established and helper functions included.
+[10:00:00] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0161
+[10:00:04] [INFO]: Memasuki halaman payment_tambah.php
+[10:00:04] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='5052'
+[10:00:04] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='5052' 
+[10:00:04] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '5052'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:00:09] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[10:00:13] [INFO]: Aksi payment accessed by user: 
+[10:00:13] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[10:00:13] [INFO]: Database connection established and helper functions included.
+[10:00:13] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"5052","no_invoice":"PO-5457","kd_po":{"1":"PO-5457","2":"PO-5457","3":"PO-5457","4":"PO-5457","5":"PO-5457","6":"PO-5457","7":"PO-5457"},"nama_supplier":"PINTU TIGA UTAMA","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"833904","status_lunas":"LUNAS","id":{"1":"5052","2":"5052","3":"5052","4":"5052","5":"5052","6":"5052","7":"5052"},"kd_brg":{"1":"8995227500230","2":"8995227500247","3":"8995227500261","4":"8995227500278","5":"8995227500995","6":"8995227502197","7":"8995227502210"},"jumlah_datang":{"1":"24","2":"24","3":"48","4":"24","5":"8","6":"8","7":"8"},"jumlah":{"1":"24","2":"24","3":"48","4":"24","5":"8","6":"8","7":"8"},"harga":{"1":"5,416","2":"5,416","3":"6,666","4":"5,416","5":"5,166","6":"5,166","7":"5,166"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0"},"subtotal":{"1":"129,984","2":"129,984","3":"319,968","4":"129,984","5":"41,328","6":"41,328","7":"41,328"}}
+[10:00:13] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[10:00:13] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[10:00:13] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '5052'
+[10:00:24] [INFO]: Aksi payment accessed by user: 
+[10:00:24] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[10:00:24] [INFO]: Database connection established and helper functions included.
+[10:00:24] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0259
+[10:00:34] [INFO]: Memasuki halaman payment_tambah.php
+[10:00:34] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22760'
+[10:00:34] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22760' 
+[10:00:34] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22760'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:00:40] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[10:00:44] [INFO]: Aksi payment accessed by user: 
+[10:00:44] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[10:00:44] [INFO]: Database connection established and helper functions included.
+[10:00:44] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"22760","no_invoice":"PO-5455","kd_po":{"1":"PO-5455","2":"PO-5455","3":"PO-5455","4":"PO-5455","5":"PO-5455"},"nama_supplier":"SAYAP MAS UTAMA","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"7563420","status_lunas":"LUNAS","id":{"1":"22760","2":"22760","3":"22760","4":"22760","5":"22760"},"kd_brg":{"1":"8998866201964","2":"8998866501026","3":"8998866501033","4":"8998866614894","5":"8998866615099"},"jumlah_datang":{"1":"60","2":"120","3":"60","4":"12","5":"12"},"jumlah":{"1":"60","2":"120","3":"60","4":"12","5":"12"},"harga":{"1":"37,549","2":"19,277","3":"38,554","4":"28,500","5":"28,500"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0"},"subtotal":{"1":"2,252,940","2":"2,313,240","3":"2,313,240","4":"342,000","5":"342,000"}}
+[10:00:44] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[10:00:44] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[10:00:44] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '22760'
+[10:01:00] [INFO]: Memasuki halaman payment_tambah.php
+[10:01:00] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='11103'
+[10:01:00] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='11103' 
+[10:01:00] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '11103'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:01:12] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[10:01:15] [INFO]: Aksi payment accessed by user: 
+[10:01:15] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[10:01:15] [INFO]: Database connection established and helper functions included.
+[10:01:15] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"11103","no_invoice":"PO-5394","kd_po":{"1":"PO-5394","2":"PO-5394","3":"PO-5394","4":"PO-5394","5":"PO-5394","6":"PO-5394","7":"PO-5394","8":"PO-5394","9":"PO-5394","10":"PO-5394","11":"PO-5394","12":"PO-5394","13":"PO-5394","14":"PO-5394","15":"PO-5394","16":"PO-5394","17":"PO-5394","18":"PO-5394","19":"PO-5394","20":"PO-5394","21":"PO-5394","22":"PO-5394","23":"PO-5394","24":"PO-5394","25":"PO-5394","26":"PO-5394","27":"PO-5394","28":"PO-5394","29":"PO-5394","30":"PO-5394","31":"PO-5394","32":"PO-5394","33":"PO-5394","34":"PO-5394","35":"PO-5394","36":"PO-5394","37":"PO-5394","38":"PO-5394","39":"PO-5394","40":"PO-5394","41":"PO-5394","42":"PO-5394","43":"PO-5394","44":"PO-5394","45":"PO-5394","46":"PO-5394","47":"PO-5394"},"nama_supplier":"SAYAP MAS UTAMA","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"4157118","status_lunas":"LUNAS","id":{"1":"11103","2":"11103","3":"11103","4":"11103","5":"11103","6":"11103","7":"11103","8":"11103","9":"11103","10":"11103","11":"11103","12":"11103","13":"11103","14":"11103","15":"11103","16":"11103","17":"11103","18":"11103","19":"11103","20":"11103","21":"11103","22":"11103","23":"11103","24":"11103","25":"11103","26":"11103","27":"11103","28":"11103","29":"11103","30":"11103","31":"11103","32":"11103","33":"11103","34":"11103","35":"11103","36":"11103","37":"11103","38":"11103","39":"11103","40":"11103","41":"11103","42":"11103","43":"11103","44":"11103","45":"11103","46":"11103","47":"11103"},"kd_brg":{"1":"8998866105132","2":"8998866105170","3":"8998866106160","4":"8998866106474","5":"8998866107143","6":"8998866107907","7":"8998866107914","8":"8998866108010","9":"8998866108102","10":"8998866108126","11":"8998866108324","12":"8998866108881","13":"8998866108928","14":"8998866109178","15":"8998866109864","16":"8998866109871","17":"8998866110020","18":"8998866110747","19":"8998866182201","20":"8998866182218","21":"8998866183208","22":"8998866200837","23":"8998866200844","24":"8998866200851","25":"8998866200929","26":"8998866201889","27":"8998866202343","28":"8998866202770","29":"8998866202978","30":"8998866203555","31":"8998866203913","32":"8998866204460","33":"8998866602389","34":"8998866605922","35":"8998866607971","36":"8998866607988","37":"8998866608824","38":"8998866611206","39":"8998866615310","40":"8998866618953","41":"8998866623803","42":"8998866623988","43":"8998866623995","44":"8998866630733","45":"8998866632300","46":"8998866679572","47":"8998866679602"},"jumlah_datang":{"1":"48","2":"12","3":"24","4":"1","5":"6","6":"24","7":"24","8":"24","9":"3","10":"3","11":"24","12":"4","13":"3","14":"6","15":"6","16":"3","17":"24","18":"3","19":"24","20":"12","21":"24","22":"12","23":"12","24":"12","25":"40","26":"6","27":"80","28":"40","29":"30","30":"24","31":"24","32":"12","33":"72","34":"6","35":"4","36":"16","37":"3","38":"6","39":"12","40":"6","41":"12","42":"48","43":"48","44":"12","45":"60","46":"4","47":"12"},"jumlah":{"1":"48","2":"12","3":"24","4":"1","5":"6","6":"24","7":"24","8":"24","9":"3","10":"3","11":"24","12":"4","13":"3","14":"6","15":"6","16":"3","17":"24","18":"3","19":"24","20":"12","21":"24","22":"12","23":"12","24":"12","25":"40","26":"6","27":"80","28":"40","29":"30","30":"24","31":"24","32":"12","33":"72","34":"6","35":"4","36":"16","37":"3","38":"6","39":"12","40":"6","41":"12","42":"48","43":"48","44":"12","45":"60","46":"4","47":"12"},"harga":{"1":"1,500","2":"9,850","3":"8,925","4":"18,260","5":"18,260","6":"3,000","7":"8,925","8":"1,560","9":"18,264","10":"18,264","11":"3,000","12":"12,500","13":"22,704","14":"12,500","15":"12,500","16":"18,260","17":"3,000","18":"18,264","19":"1,560","20":"6,750","21":"1,500","22":"4,164","23":"4,164","24":"4,164","25":"2,709","26":"8,300","27":"2,845","28":"2,845","29":"6,080","30":"3,527","31":"1,350","32":"4,164","33":"2,650","34":"10,250","35":"10,304","36":"2,170","37":"29,710","38":"10,250","39":"7,900","40":"18,250","41":"7,800","42":"2,430","43":"2,430","44":"7,900","45":"4,116","46":"10,304","47":"10,304"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"0","21":"0","22":"0","23":"0","24":"0","25":"0","26":"0","27":"0","28":"0","29":"0","30":"0","31":"0","32":"0","33":"0","34":"0","35":"0","36":"0","37":"0","38":"0","39":"0","40":"0","41":"0","42":"0","43":"0","44":"0","45":"0","46":"0","47":"0"},"subtotal":{"1":"72,000","2":"118,200","3":"214,200","4":"18,260","5":"109,560","6":"72,000","7":"214,200","8":"37,440","9":"54,792","10":"54,792","11":"72,000","12":"50,000","13":"68,112","14":"75,000","15":"75,000","16":"54,780","17":"72,000","18":"54,792","19":"37,440","20":"81,000","21":"36,000","22":"49,968","23":"49,968","24":"49,968","25":"108,360","26":"49,800","27":"227,600","28":"113,800","29":"182,400","30":"84,648","31":"32,400","32":"49,968","33":"190,800","34":"61,500","35":"41,216","36":"34,720","37":"89,130","38":"61,500","39":"94,800","40":"109,500","41":"93,600","42":"116,640","43":"116,640","44":"94,800","45":"246,960","46":"41,216","47":"123,648"}}
+[10:01:15] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[10:01:15] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[10:01:15] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '11103'
+[10:01:21] [INFO]: Memasuki halaman payment_tambah.php
+[10:01:21] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:01:21] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:01:21] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:03:38] [INFO]: Memasuki halaman payment_tambah.php
+[10:03:38] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:03:38] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:03:38] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:03:44] [INFO]: Memasuki halaman payment_tambah.php
+[10:03:44] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:03:44] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:03:44] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:04:33] [INFO]: Memasuki halaman payment_tambah.php
+[10:04:33] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:04:33] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:04:33] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:04:40] [INFO]: Memasuki halaman payment_tambah.php
+[10:04:40] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:04:40] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:04:40] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:04:56] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[10:07:34] [INFO]: Aksi payment accessed by user: 
+[10:07:34] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[10:07:34] [INFO]: Database connection established and helper functions included.
+[10:07:34] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0259
+[10:07:43] [INFO]: Memasuki halaman payment_tambah.php
+[10:07:43] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:07:43] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:07:43] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:11:29] [INFO]: Aksi payment accessed by user: 
+[10:11:29] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[10:11:29] [INFO]: Database connection established and helper functions included.
+[10:11:29] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0259
+[10:11:49] [INFO]: Memasuki halaman payment_tambah.php
+[10:11:49] [INFO]: Query untuk mengambil detail invoice: SELECT pembelian_invoice.* , supplier.nama from pembelian_invoice JOIN supplier ON supplier.kd_supp = pembelian_invoice.kd_supp where no_invoice='22753'
+[10:11:49] [INFO]: Query untuk mengambil detail invoice: SELECT * from pembelian_invoice_detail where no_invoice='22753' 
+[10:11:49] [INFO]: Query untuk mengambil detail invoice: SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '22753'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        
+[10:11:59] [INFO]: Query: SELECT no_account, deskripsi FROM account WHERE kd_jenis = '11'
+[10:12:06] [INFO]: Aksi payment accessed by user: 
+[10:12:06] [INFO]: User Starttttt is authenticated. Processing action for route: payment_add and act: input
+[10:12:06] [INFO]: Database connection established and helper functions included.
+[10:12:06] [INFO]: Memproses input payment dengan data: {"nomor_invoice":"22753","no_invoice":"PO-5456","kd_po":{"1":"PO-5456","2":"PO-5456","3":"PO-5456","4":"PO-5456","5":"PO-5456","6":"PO-5456","7":"PO-5456","8":"PO-5456","9":"PO-5456","10":"PO-5456","11":"PO-5456","12":"PO-5456","13":"PO-5456","14":"PO-5456","15":"PO-5456","16":"PO-5456","17":"PO-5456","18":"PO-5456","19":"PO-5456","20":"PO-5456","21":"PO-5456","22":"PO-5456","23":"PO-5456","24":"PO-5456","25":"PO-5456","26":"PO-5456","27":"PO-5456","28":"PO-5456","29":"PO-5456","30":"PO-5456","31":"PO-5456","32":"PO-5456","33":"PO-5456","34":"PO-5456","35":"PO-5456","36":"PO-5456","37":"PO-5456","38":"PO-5456","39":"PO-5456","40":"PO-5456","41":"PO-5456","42":"PO-5456","43":"PO-5456","44":"PO-5456","45":"PO-5456","46":"PO-5456","47":"PO-5456","48":"PO-5456","49":"PO-5456","50":"PO-5456","51":"PO-5456","52":"PO-5456","53":"PO-5456","54":"PO-5456","55":"PO-5456","56":"PO-5456","57":"PO-5456","58":"PO-5456","59":"PO-5456","60":"PO-5456","61":"PO-5456","62":"PO-5456","63":"PO-5456","64":"PO-5456","65":"PO-5456","66":"PO-5456","67":"PO-5456","68":"PO-5456","69":"PO-5456","70":"PO-5456","71":"PO-5456","72":"PO-5456","73":"PO-5456","74":"PO-5456","75":"PO-5456","76":"PO-5456","77":"PO-5456","78":"PO-5456","79":"PO-5456","80":"PO-5456","81":"PO-5456","82":"PO-5456","83":"PO-5456","84":"PO-5456","85":"PO-5456","86":"PO-5456","87":"PO-5456","88":"PO-5456","89":"PO-5456","90":"PO-5456","91":"PO-5456","92":"PO-5456","93":"PO-5456","94":"PO-5456","95":"PO-5456","96":"PO-5456","97":"PO-5456","98":"PO-5456","99":"PO-5456","100":"PO-5456","101":"PO-5456","102":"PO-5456","103":"PO-5456","104":"PO-5456","105":"PO-5456","106":"PO-5456","107":"PO-5456","108":"PO-5456","109":"PO-5456","110":"PO-5456","111":"PO-5456","112":"PO-5456","113":"PO-5456","114":"PO-5456","115":"PO-5456"},"nama_supplier":"SAYAP MAS UTAMA","ppn":"0","tanggal_payment":"2026-06-12","metode_payment":"11","akun":"1001001","reff":"","jumlah_payment":"14005005","status_lunas":"LUNAS","id":{"1":"22753","2":"22753","3":"22753","4":"22753","5":"22753","6":"22753","7":"22753","8":"22753","9":"22753","10":"22753","11":"22753","12":"22753","13":"22753","14":"22753","15":"22753","16":"22753","17":"22753","18":"22753","19":"22753","20":"22753","21":"22753","22":"22753","23":"22753","24":"22753","25":"22753","26":"22753","27":"22753","28":"22753","29":"22753","30":"22753","31":"22753","32":"22753","33":"22753","34":"22753","35":"22753","36":"22753","37":"22753","38":"22753","39":"22753","40":"22753","41":"22753","42":"22753","43":"22753","44":"22753","45":"22753","46":"22753","47":"22753","48":"22753","49":"22753","50":"22753","51":"22753","52":"22753","53":"22753","54":"22753","55":"22753","56":"22753","57":"22753","58":"22753","59":"22753","60":"22753","61":"22753","62":"22753","63":"22753","64":"22753","65":"22753","66":"22753","67":"22753","68":"22753","69":"22753","70":"22753","71":"22753","72":"22753","73":"22753","74":"22753","75":"22753","76":"22753","77":"22753","78":"22753","79":"22753","80":"22753","81":"22753","82":"22753","83":"22753","84":"22753","85":"22753","86":"22753","87":"22753","88":"22753","89":"22753","90":"22753","91":"22753","92":"22753","93":"22753","94":"22753","95":"22753","96":"22753","97":"22753","98":"22753","99":"22753","100":"22753","101":"22753","102":"22753","103":"22753","104":"22753","105":"22753","106":"22753","107":"22753","108":"22753","109":"22753","110":"22753","111":"22753","112":"22753","113":"22753","114":"22753","115":"22753"},"kd_brg":{"1":"8998866100243","2":"8998866100717","3":"8998866102322","4":"8998866102681","5":"8998866105132","6":"8998866105149","7":"8998866105156","8":"8998866105163","9":"8998866105286","10":"8998866106160","11":"8998866107778","12":"8998866107907","13":"8998866107914","14":"8998866108010","15":"8998866108928","16":"8998866108935","17":"8998866108997","18":"8998866109413","19":"8998866109864","20":"8998866110020","21":"8998866182201","22":"8998866182218","23":"8998866183208","24":"8998866183215","25":"8998866200301","26":"8998866200325","27":"8998866200851","28":"8998866201483","29":"8998866202114","30":"8998866202299","31":"8998866202466","32":"8998866202626","33":"8998866202657","34":"8998866202732","35":"8998866202930","36":"8998866203104","37":"8998866203258","38":"8998866203708","39":"8998866203715","40":"8998866203746","41":"8998866203883","42":"8998866203920","43":"8998866204514","44":"8998866600101","45":"8998866600521","46":"8998866601870","47":"8998866601962","48":"8998866601979","49":"8998866603416","50":"8998866603638","51":"8998866603881","52":"8998866604956","53":"8998866605649","54":"8998866605670","55":"8998866607360","56":"8998866608039","57":"8998866608046","58":"8998866608237","59":"8998866608244","60":"8998866608398","61":"8998866608459","62":"8998866608558","63":"8998866608855","64":"8998866608961","65":"8998866609494","66":"8998866610094","67":"8998866610223","68":"8998866610278","69":"8998866610445","70":"8998866611701","71":"8998866611787","72":"8998866613002","73":"8998866613460","74":"8998866613569","75":"8998866615273","76":"8998866616232","77":"8998866618281","78":"8998866618304","79":"8998866618700","80":"8998866619295","81":"8998866620536","82":"8998866621571","83":"8998866623186","84":"8998866623810","85":"8998866625043","86":"8998866626170","87":"8998866626255","88":"8998866626262","89":"8998866627399","90":"8998866627405","91":"8998866628112","92":"8998866630375","93":"8998866631075","94":"8998866631723","95":"8998866632133","96":"8998866632287","97":"8998866632508","98":"8998866633499","99":"8998866633505","100":"8998866633581","101":"8998866633673","102":"8998866634854","103":"8998866634939","104":"8998866635226","105":"8998866635233","106":"8998866659598","107":"8998866670739","108":"8998866671736","109":"8998866803618","110":"8998866803649","111":"8998866808712","112":"8998866809337","113":"8998866809696","114":"8998866809719","115":"8998866888615"},"jumlah_datang":{"1":"12","2":"24","3":"12","4":"12","5":"24","6":"12","7":"72","8":"12","9":"6","10":"24","11":"6","12":"24","13":"24","14":"24","15":"3","16":"3","17":"20","18":"12","19":"6","20":"24","21":"48","22":"12","23":"24","24":"12","25":"120","26":"40","27":"12","28":"40","29":"8","30":"24","31":"40","32":"480","33":"6","34":"60","35":"12","36":"40","37":"12","38":"360","39":"6","40":"6","41":"30","42":"60","43":"60","44":"36","45":"12","46":"3","47":"10","48":"10","49":"12","50":"3","51":"6","52":"72","53":"12","54":"24","55":"72","56":"120","57":"24","58":"12","59":"7","60":"24","61":"24","62":"12","63":"24","64":"200","65":"24","66":"6","67":"24","68":"12","69":"24","70":"48","71":"24","72":"36","73":"12","74":"24","75":"4","76":"12","77":"72","78":"24","79":"12","80":"72","81":"4","82":"72","83":"3","84":"12","85":"3","86":"24","87":"120","88":"120","89":"96","90":"12","91":"120","92":"6","93":"72","94":"4","95":"200","96":"120","97":"24","98":"60","99":"36","100":"6","101":"4","102":"6","103":"24","104":"2","105":"2","106":"4","107":"36","108":"36","109":"200","110":"6","111":"48","112":"6","113":"3","114":"24","115":"72"},"jumlah":{"1":"12","2":"24","3":"12","4":"12","5":"24","6":"12","7":"72","8":"12","9":"6","10":"24","11":"6","12":"24","13":"24","14":"24","15":"3","16":"3","17":"20","18":"12","19":"6","20":"24","21":"48","22":"12","23":"24","24":"12","25":"120","26":"40","27":"12","28":"40","29":"8","30":"24","31":"40","32":"480","33":"6","34":"60","35":"12","36":"40","37":"12","38":"360","39":"6","40":"6","41":"30","42":"60","43":"60","44":"36","45":"12","46":"3","47":"10","48":"10","49":"12","50":"3","51":"6","52":"72","53":"12","54":"24","55":"72","56":"120","57":"24","58":"12","59":"7","60":"24","61":"24","62":"12","63":"24","64":"200","65":"24","66":"6","67":"24","68":"12","69":"24","70":"48","71":"24","72":"36","73":"12","74":"24","75":"4","76":"12","77":"72","78":"24","79":"12","80":"72","81":"4","82":"72","83":"3","84":"12","85":"3","86":"24","87":"120","88":"120","89":"96","90":"12","91":"120","92":"6","93":"72","94":"4","95":"200","96":"120","97":"24","98":"60","99":"36","100":"6","101":"4","102":"6","103":"24","104":"2","105":"2","106":"4","107":"36","108":"36","109":"200","110":"6","111":"48","112":"6","113":"3","114":"24","115":"72"},"harga":{"1":"4,980","2":"8,925","3":"2,780","4":"2,700","5":"1,500","6":"6,750","7":"8,925","8":"6,625","9":"12,350","10":"8,925","11":"6,330","12":"3,000","13":"8,925","14":"1,560","15":"22,704","16":"22,704","17":"2,340","18":"6,970","19":"12,500","20":"3,000","21":"1,560","22":"6,750","23":"1,500","24":"6,750","25":"2,845","26":"2,709","27":"4,164","28":"4,430","29":"14,229","30":"7,600","31":"4,340","32":"1,650","33":"7,600","34":"2,835","35":"4,164","36":"2,709","37":"4,164","38":"379","39":"3,175","40":"3,175","41":"7,820","42":"2,835","43":"2,835","44":"4,350","45":"4,200","46":"9,995","47":"20,812","48":"20,812","49":"3,640","50":"21,728","51":"2,170","52":"785","53":"3,640","54":"2,280","55":"785","56":"1,560","57":"6,800","58":"800","59":"800","60":"4,416","61":"4,200","62":"14,650","63":"3,072","64":"1,155","65":"4,200","66":"26,200","67":"14,550","68":"8,200","69":"4,200","70":"1,500","71":"4,416","72":"4,350","73":"800","74":"4,416","75":"61,150","76":"4,950","77":"780","78":"14,550","79":"3,640","80":"780","81":"61,150","82":"2,650","83":"18,500","84":"7,800","85":"18,500","86":"2,280","87":"1,491","88":"1,491","89":"1,500","90":"7,900","91":"1,491","92":"13,700","93":"863","94":"61,150","95":"1,155","96":"2,133","97":"3,082","98":"1,700","99":"4,350","100":"9,275","101":"10,304","102":"25,800","103":"4,416","104":"17,654","105":"17,654","106":"11,100","107":"4,350","108":"4,350","109":"1,155","110":"15,227","111":"2,208","112":"9,275","113":"12,330","114":"4,000","115":"2,650"},"diskon":{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"0","21":"0","22":"0","23":"0","24":"0","25":"0","26":"0","27":"0","28":"0","29":"0","30":"0","31":"0","32":"0","33":"0","34":"0","35":"0","36":"0","37":"0","38":"0","39":"0","40":"0","41":"0","42":"0","43":"0","44":"0","45":"0","46":"0","47":"0","48":"0","49":"0","50":"0","51":"0","52":"0","53":"0","54":"0","55":"0","56":"0","57":"0","58":"0","59":"0","60":"0","61":"0","62":"0","63":"0","64":"0","65":"0","66":"0","67":"0","68":"0","69":"0","70":"0","71":"0","72":"0","73":"0","74":"0","75":"0","76":"0","77":"0","78":"0","79":"0","80":"0","81":"0","82":"0","83":"0","84":"0","85":"0","86":"0","87":"0","88":"0","89":"0","90":"0","91":"0","92":"0","93":"0","94":"0","95":"0","96":"0","97":"0","98":"0","99":"0","100":"0","101":"0","102":"0","103":"0","104":"0","105":"0","106":"0","107":"0","108":"0","109":"0","110":"0","111":"0","112":"0","113":"0","114":"0","115":"0"},"subtotal":{"1":"59,760","2":"214,200","3":"33,360","4":"32,400","5":"36,000","6":"81,000","7":"642,600","8":"79,500","9":"74,100","10":"214,200","11":"37,980","12":"72,000","13":"214,200","14":"37,440","15":"68,112","16":"68,112","17":"46,800","18":"83,640","19":"75,000","20":"72,000","21":"74,880","22":"81,000","23":"36,000","24":"81,000","25":"341,400","26":"108,360","27":"49,968","28":"177,200","29":"113,832","30":"182,400","31":"173,600","32":"792,000","33":"45,600","34":"170,100","35":"49,968","36":"108,360","37":"49,968","38":"136,440","39":"19,050","40":"19,050","41":"234,600","42":"170,100","43":"170,100","44":"156,600","45":"50,400","46":"29,985","47":"208,120","48":"208,120","49":"43,680","50":"65,184","51":"13,020","52":"56,520","53":"43,680","54":"54,720","55":"56,520","56":"187,200","57":"163,200","58":"9,600","59":"5,600","60":"105,984","61":"100,800","62":"175,800","63":"73,728","64":"231,000","65":"100,800","66":"157,200","67":"349,200","68":"98,400","69":"100,800","70":"72,000","71":"105,984","72":"156,600","73":"9,600","74":"105,984","75":"244,600","76":"59,400","77":"56,160","78":"349,200","79":"43,680","80":"56,160","81":"244,600","82":"190,800","83":"55,500","84":"93,600","85":"55,500","86":"54,720","87":"178,920","88":"178,920","89":"144,000","90":"94,800","91":"178,920","92":"82,200","93":"62,136","94":"244,600","95":"231,000","96":"255,960","97":"73,968","98":"102,000","99":"156,600","100":"55,650","101":"41,216","102":"154,800","103":"105,984","104":"35,308","105":"35,308","106":"44,400","107":"156,600","108":"156,600","109":"231,000","110":"91,362","111":"105,984","112":"55,650","113":"36,990","114":"96,000","115":"190,800"}}
+[10:12:06] [INFO]: Query untuk mencari nomor payment terakhir: SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-2606%' ORDER BY no_payment DESC LIMIT 1
+[10:12:06] [INFO]: Ditemukan payment sebelumnya di bulan yang sama.
+[10:12:06] [INFO]: UPDATE pembelian_invoice SET status_payment = '2' WHERE no_invoice = '22753'

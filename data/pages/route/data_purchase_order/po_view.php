@@ -111,7 +111,9 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
             $namaSupp = $q1['nama'];
             $term_of_payment = $q1['term_of_payment'];
             $kd_po = $q1['kd_po'];
-
+            $nofaktur=$q1['no_faktur'];
+            $kd_beli=$q1['kd_beli'];
+ 
 
             $query2 = mysqli_query($koneksi, "SELECT * from $tabel2 where $ff1='$_GET[id]' ");
             $q2 = mysqli_fetch_array($query2);
@@ -344,7 +346,19 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                                             ?>
                                                                         </select>
                                                                     </div>
+<div class="col-lg-2">
+    <form method="POST" action="route/data_purchase_order/aksi_purchase_order.php">
+        <input type="hidden" name="kd_beli" value="<?php echo $kd_beli; ?>"/>
+        <input type="hidden" name="route" value="purchase_order"/>
+        <label>No Faktur</label>
+        <input type="text" name="nofaktur" class="form-control mb-2" value="<?php echo $nofaktur; ?>" />
+        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Update No Faktur</button>
+    </form>
+</div>                                                                  
+
                                                                 </div> <!-- row -->
+                                                                
+                                                            
                                                             </div> <!-- col-lg-7  -->
 
                                                             <!-- kanan -->

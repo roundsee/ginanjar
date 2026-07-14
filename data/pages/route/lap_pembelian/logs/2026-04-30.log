@@ -1,0 +1,555 @@
+[09:19:52] [INFO]: tetsst
+[09:19:59] [INFO]: sgfdgfggfd
+[09:20:12] [INFO]: tetsst
+[09:20:19] [INFO]: sgfdgfggfd
+[09:27:26] [INFO]: tetsst
+[09:27:30] [INFO]: sgfdgfggfd
+[10:00:17] [INFO]: tetsst
+[10:00:23] [INFO]: sgfdgfggfd
+[10:04:01] [INFO]: tetsst
+[10:04:06] [INFO]: sgfdgfggfd
+[10:04:23] [INFO]: tetsst
+[10:04:28] [INFO]: sgfdgfggfd
+[10:04:40] [INFO]: tetsst
+[10:04:44] [INFO]: sgfdgfggfd
+[10:04:53] [INFO]: tetsst
+[10:04:58] [INFO]: sgfdgfggfd
+[10:05:08] [INFO]: tetsst
+[10:05:13] [INFO]: sgfdgfggfd
+[10:07:54] [INFO]: tetsst
+[10:08:04] [INFO]: sgfdgfggfd
+[10:10:12] [INFO]: tetsst
+[10:10:15] [INFO]: sgfdgfggfd
+[10:13:05] [INFO]: tetsst
+[10:13:11] [INFO]: sgfdgfggfd
+[10:13:22] [INFO]: tetsst
+[10:13:26] [INFO]: sgfdgfggfd
+[10:20:33] [INFO]: tetsst
+[10:20:40] [INFO]: sgfdgfggfd
+[10:20:41] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-25' AND '2026-04-30'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:22:35] [INFO]: tetsst
+[10:22:41] [INFO]: sgfdgfggfd
+[10:22:41] [INFO]: 
+             SELECT 
+                pd.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-27' AND '2026-04-30'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:25:47] [INFO]: tetsst
+[10:25:52] [INFO]: sgfdgfggfd
+[10:25:52] [INFO]: 
+             SELECT 
+                pd.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-27' AND '2026-04-30'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:26:36] [INFO]: tetsst
+[10:26:42] [INFO]: sgfdgfggfd
+[10:26:42] [INFO]: 
+             SELECT 
+                pd.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-28' AND '2026-04-30'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:27:46] [INFO]: tetsst
+[10:27:50] [INFO]: sgfdgfggfd
+[10:27:51] [INFO]: yyyyyyyy
+[10:27:51] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-27' AND '2026-04-30'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:28:22] [INFO]: tetsst
+[10:28:25] [INFO]: sgfdgfggfd
+[10:28:25] [INFO]: yyyyyyyy
+[10:28:25] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-03-04' AND '2026-03-04'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:37:26] [INFO]: tetsst
+[10:37:33] [INFO]: sgfdgfggfd
+[10:37:33] [INFO]: yyyyyyyy
+[10:37:33] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-11' AND '2026-04-11'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:37:35] [INFO]: tetsst
+[10:37:38] [INFO]: sgfdgfggfd
+[10:37:38] [INFO]: yyyyyyyy
+[10:37:38] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-15' AND '2026-04-15'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:38:06] [INFO]: tetsst
+[10:38:14] [INFO]: sgfdgfggfd
+[10:38:14] [INFO]: yyyyyyyy
+[10:38:14] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-16' AND '2026-04-16'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:38:20] [INFO]: tetsst
+[10:38:29] [INFO]: sgfdgfggfd
+[10:38:29] [INFO]: yyyyyyyy
+[10:38:29] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-17' AND '2026-04-17'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:38:41] [INFO]: tetsst
+[10:38:46] [INFO]: sgfdgfggfd
+[10:38:46] [INFO]: yyyyyyyy
+[10:38:46] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-18' AND '2026-04-18'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:40:26] [INFO]: tetsst
+[10:40:30] [INFO]: sgfdgfggfd
+[10:40:31] [INFO]: yyyyyyyy
+[10:40:31] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-20' AND '2026-04-20'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:40:41] [INFO]: tetsst
+[10:40:45] [INFO]: sgfdgfggfd
+[10:40:46] [INFO]: yyyyyyyy
+[10:40:46] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-21' AND '2026-04-21'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:40:52] [INFO]: tetsst
+[10:40:56] [INFO]: sgfdgfggfd
+[10:40:56] [INFO]: yyyyyyyy
+[10:40:56] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-22' AND '2026-04-22'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:41:03] [INFO]: tetsst
+[10:41:07] [INFO]: sgfdgfggfd
+[10:41:07] [INFO]: yyyyyyyy
+[10:41:07] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-23' AND '2026-04-23'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:41:16] [INFO]: tetsst
+[10:41:20] [INFO]: sgfdgfggfd
+[10:41:20] [INFO]: yyyyyyyy
+[10:41:20] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-24' AND '2026-04-24'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:41:27] [INFO]: tetsst
+[10:41:32] [INFO]: sgfdgfggfd
+[10:41:32] [INFO]: yyyyyyyy
+[10:41:32] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-27' AND '2026-04-27'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:41:40] [INFO]: tetsst
+[10:41:45] [INFO]: sgfdgfggfd
+[10:41:45] [INFO]: yyyyyyyy
+[10:41:45] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-28' AND '2026-04-28'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        
+[10:42:45] [INFO]: tetsst
+[10:53:11] [INFO]: tetsst
+[10:53:17] [INFO]: sgfdgfggfd
+[10:53:17] [INFO]: yyyyyyyy
+[10:53:17] [INFO]: 
+             SELECT 
+                pid.*, 
+                b.nama, 
+                p.no_faktur,
+                SUM(pd.disc) AS tot_disc, 
+                p.ppn, 
+                pb.jumlah_datang AS jumlah_barang_datang, 
+                p.tarif_ppn, 
+                s.nama AS nama_supp, 
+                p.kd_supp,
+                pi.tanggal_invoice,
+                pid.no_invoice
+            from 
+              pembelian_invoice pi
+              join pembelian_invoice_detail pid  on pid.no_invoice = pi.no_invoice
+              join pembelian p on p.kd_po  = pi.kd_po 
+              join pembelian_detail pd on p.kd_beli = pd.kd_beli and pd.kd_brg  = pid.kd_brg
+              join supplier s on s.kd_supp =p.kd_supp 
+              join barang b on b.kd_brg =pd.kd_brg 
+              left join penerimaan_barang pb on pd.kd_po=pb.kd_po and pd.kd_brg = pb.kd_brg 
+            WHERE pi.tanggal_invoice BETWEEN '2026-04-28' AND '2026-04-28'
+            GROUP BY pid.kd_po, pid.kd_brg
+            ORDER BY p.kd_supp, pi.tanggal_invoice ASC;
+        

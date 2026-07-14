@@ -75,6 +75,10 @@ elseif ($_GET['route'] == 'import_pembelian_retur') {
 elseif ($_GET['route'] == 'import_penjualan') {
 	include "route/data_import_penjualan/index.php";
 }
+// modul upload faktur pajak OCR
+elseif ($_GET['route'] == 'upload_faktur_pajak') {
+	include "route/upload_faktur_pajak/index.php";
+}
 // modul untuk supplier detail
 elseif ($_GET['route'] == 'supplier_barang') {
 	include "route/data_supplier/supplier_barang.php";
@@ -298,6 +302,8 @@ elseif ($_GET['route'] == 'lap_biaya') {
 	include "route/lap_biaya/lap_biaya.php";
 } elseif ($_GET['route'] == 'lap_pembelian') {
 	include "route/lap_pembelian/lap_pembelian.php";
+} elseif ($_GET['route'] == 'lap_faktur_pajak') {
+	include "route/lap_faktur_pajak/lap_faktur_pajak.php";
 }
 // modul pb1
 elseif ($_GET['route'] == 'pb1') {

@@ -1,11 +1,13 @@
 <?php
 include '../../../../config/koneksi.php'; // Sesuaikan dengan file koneksi Anda
-
+include 'logging.php'; // Pastikan file logging.php ada dan berfungsi dengan baik
 if (isset($_POST['kd_jenis'])) {
     $kd_jenis = $_POST['kd_jenis'];
 
     // Query untuk mengambil akun berdasarkan kd_jenis
-    $query = mysqli_query($koneksi, "SELECT no_account, deskripsi FROM account WHERE kd_jenis = '$kd_jenis'");
+    $q = "SELECT no_account, deskripsi FROM account WHERE kd_jenis = '$kd_jenis'";
+    write_log("Query: $q"); // Log query yang dijalankan
+    $query = mysqli_query($koneksi, $q);
 
     $akun_options = [];
 

@@ -1,4 +1,6 @@
 <?php
+include "logging.php";
+write_log("tetsst");
 $login_hash = $_SESSION['login_hash'];
 $en = $_SESSION['employee_number'];
 $to = $_SESSION['to'];

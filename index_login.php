@@ -47,9 +47,9 @@ $hash = $_GET['hash'];
   <!--animate-->
   <link href="<?php echo $dir; ?>dist/css/animate.css" rel="stylesheet" type="text/css" media="all">
   <script src="<?php echo $dir; ?>dist/js/wow.min.js"></script>
-  <script>
+  <!-- <script>
     new WOW().init();
-  </script>
+  </script> -->
   <!--//end-animate-->
   <style type="text/css">
     .kotak {

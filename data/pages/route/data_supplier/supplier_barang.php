@@ -23,6 +23,7 @@ $f10 = 'kd_dispenda';
 $f11 = 'id_kat';
 $f12 = 'hari_pengiriman';
 $f13 = 'term_of_payment';
+$f14 = 'pkp';
 
 $j1 = 'Kode Supplier';
 $j2 = 'Nama Supplier';
@@ -37,6 +38,7 @@ $j10 = 'Dispenda';
 $j11 = 'Kode Kategori';
 $j12 = 'Hari Pengiriman';
 $j13 = 'Term Of payment';
+$j14 = 'PKP';
 
 
 $tabel_detail = 'supplier_barang';
@@ -170,6 +172,46 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                                         <input type="text" name="<?php echo $f7; ?>" class="form-control" value="<?php echo $q1[$f7]; ?>" />
                                                                     </div>
                                                                 </div>
+
+<div style="margin-bottom: 15px; font-family: sans-serif;">
+          <label style="display: block; font-weight: bold; margin-bottom: 8px;">Status Pajak Supplier:</label>
+          
+          <div style="margin-bottom: 10px; display: flex; align-items: center;">
+              <input type="radio" id="pkp_yes" name="pkp" value="1" <?php echo ($j14 == 1) ? 'checked' : ''; ?> style="cursor: pointer; margin-right: 10px;">
+              <label for="pkp_yes" style="cursor: pointer; display: flex; align-items: center;">
+                  <span style="
+                      display: inline-block; 
+                      padding: 4px 12px; 
+                      font-size: 11px; 
+                      font-weight: bold; 
+                      border-radius: 4px; 
+                      background-color: #d1e7dd; 
+                      color: #0f5132; 
+                      border: 1px solid #badbcc; 
+                      text-transform: uppercase;">
+                      ● PKP (Pengusaha Kena Pajak)
+                  </span>
+              </label>
+          </div>
+
+          <div style="display: flex; align-items: center;">
+              <input type="radio" id="pkp_no" name="pkp" value="0" <?php echo ($j14 == 0) ? 'checked' : ''; ?> style="cursor: pointer; margin-right: 10px;">
+              <label for="pkp_no" style="cursor: pointer; display: flex; align-items: center;">
+                  <span style="
+                      display: inline-block; 
+                      padding: 4px 12px; 
+                      font-size: 11px; 
+                      font-weight: bold; 
+                      border-radius: 4px; 
+                      background-color: #f8f9fa; 
+                      color: #6c757d; 
+                      border: 1px solid #dee2e6; 
+                      text-transform: uppercase;">
+                      ○ NON-PKP
+                  </span>
+              </label>
+          </div>
+      </div>                                                                
 
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">

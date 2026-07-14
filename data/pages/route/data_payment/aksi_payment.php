@@ -1,7 +1,9 @@
 <?php
+include "logging.php";
+
 session_start();
 
-
+write_log("Aksi payment accessed by user: " . $_SESSION['username']);
 $employee = $_SESSION['employee_number'];
 $tabel = 'pembelian_invoice';
 $f1 = 'no_invoice';
@@ -41,9 +43,10 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
  	<center>Untuk mengakses modul, Anda harus login <br>";
     echo "<a href=../../index.php><b>LOGIN</b></a></center>";
 } else {
+    write_log("User Starttttt" . $_SESSION['username'] . " is authenticated. Processing action for route: " . $_GET['route'] . " and act: " . $_GET['act']);
     include "../../../../config/koneksi.php";
     include "../../../../config/fungsi_kode_otomatis.php";
-
+write_log("Database connection established and helper functions included.");
     $route = $_GET['route'];
     $act = $_GET['act'];
 
@@ -52,6 +55,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
     // Tambah Staff
     if ($route == 'payment_add' && $act == 'input') {
         // Ambil data dari form
+        write_log("Memproses input payment dengan data: " . json_encode($_POST));
         $no_invoice = $_POST['nomor_invoice']; // Nomor Invoice
         $kd_po = $_POST[$f1]; // Kode PO
         $kd_supp = $_POST[$f3]; // Kode Supplier
@@ -92,9 +96,12 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
         $tahun_bulan = date('ym', strtotime($tanggal_payment)); // Format tahun dan bulan: YYMM
         
         // Query untuk mencari payment terakhir di bulan yang sama
-        $query_last_payment = mysqli_query($koneksi, "SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-$tahun_bulan%' ORDER BY no_payment DESC LIMIT 1");
+        $qry = "SELECT no_payment FROM payment WHERE no_payment LIKE 'PAY-OUT-$tahun_bulan%' ORDER BY no_payment DESC LIMIT 1";
+        write_log("Query untuk mencari nomor payment terakhir: " . $qry);
+        $query_last_payment = mysqli_query($koneksi, $qry);
         
         if (mysqli_num_rows($query_last_payment) > 0) {
+            write_log("Ditemukan payment sebelumnya di bulan yang sama.");
             // Jika sudah ada payment di bulan tersebut
             $data_last_payment = mysqli_fetch_assoc($query_last_payment);
             $last_no_payment = $data_last_payment['no_payment'];
@@ -103,6 +110,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
             $last_number = (int)substr($last_no_payment, 14); // Ambil angka setelah PAY-OUT-YYMM-
             $new_number = str_pad($last_number + 1, 5, '0', STR_PAD_LEFT); // Tambahkan dan format dengan 5 digit
         } else {
+            write_log("Belum ada payment di bulan tersebut. Mulai dari nomor 00001.");
             // Jika belum ada payment di bulan tersebut, mulai dari 00001
             $new_number = "00001";
         }
@@ -121,6 +129,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
         $jumlah_datang = array_map('intval', $jumlah_datang);
 
         $update_status_pembelian_invoice = "UPDATE pembelian_invoice SET status_payment = '$status_payment' WHERE no_invoice = '$no_invoice'";
+        write_log($update_status_pembelian_invoice); 
         if (mysqli_query($koneksi, $update_status_pembelian_invoice)) {
             // echo "Update Daa.";
         } else {
@@ -187,7 +196,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
             $filter = 'semua';
             $nilai = 'semua';
         }
-
+    write_log('location:../../main.php?route=' . $route . '&act=report&filter=' . $filter . '&nilai=' . $nilai);
         header('location:../../main.php?route=' . $route . '&act=report&filter=' . $filter . '&nilai=' . $nilai);
     }
      elseif ($route == 'payment_based_tanggal' and $act == 'report') {

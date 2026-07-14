@@ -81,6 +81,7 @@ $tabel2 = 'kotabaru';
 $ff1 = 'kode';
 $tabel3 = 'pelanggan';
 $gg1 = 'kd_cus';
+$tes="";
 
 //session_start();
 if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {

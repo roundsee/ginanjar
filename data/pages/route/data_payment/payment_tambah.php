@@ -1,5 +1,6 @@
 <?php
-
+include 'logging.php'; // Pastikan file logging.php ada dan berfungsi dengan baik
+write_log("Memasuki halaman payment_tambah.php"); // Log masuk ke halaman ini
 $judulform = 'Payment Tambah ';
 
 $data = 'data_payment';
@@ -56,8 +57,10 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 
 
             $id = $_GET['id'];
-
-            $query = mysqli_query($koneksi, "SELECT $tabel.* , supplier.nama from $tabel JOIN supplier ON supplier.kd_supp = $tabel.kd_supp where $f1='$_GET[id]'");
+            $qq ="SELECT $tabel.* , supplier.nama from $tabel JOIN supplier ON supplier.kd_supp = $tabel.kd_supp where $f1='$_GET[id]'";
+            
+            write_log("Query untuk mengambil detail invoice: $qq");
+            $query = mysqli_query($koneksi, $qq);
             // 	if (!$query) {
             // 		$error_message = mysqli_error($koneksi);
             // 		echo "<script>alert('Query gagal: " . addslashes($error_message) . "');</script>";
@@ -74,8 +77,9 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
             $kd_po = $q1['kd_po'];
             $ongkir = $q1['ongkir'];
             $nilai_retur = $q1['nilai_retur'];
-
-            $query2 = mysqli_query($koneksi, "SELECT * from $tabel2 where $ff1='$_GET[id]' ");
+            $qa=  "SELECT * from $tabel2 where $ff1='$_GET[id]' ";
+            write_log("Query untuk mengambil detail invoice: $qa");
+            $query2 = mysqli_query($koneksi, $qa);
             $q2 = mysqli_fetch_array($query2);
 
             if ($q1['ppn'] == 1) {
@@ -321,15 +325,19 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                                 $no = 1;
                                                                 $subtotal = 0;
                                                                 $stotal = 0;
-                                                                $sql1 = mysqli_query($koneksi, "SELECT pd.*, barang.nama, SUM(pembelian_detail.disc) as tot_disc, pembelian.ppn, pb.jumlah_datang as jumlah_barang_datang, pembelian.tarif_ppn
-                                                                        FROM $tabel2 pd
-                                                                        JOIN barang ON barang.kd_brg = pd.kd_brg
-                                                                        JOIN pembelian ON pembelian.kd_po = pd.kd_po
-                                                                        JOIN pembelian_detail ON pembelian_detail.kd_po = pd.kd_po AND pembelian_detail.kd_brg = pd.kd_brg
-                                                                        LEFT JOIN penerimaan_barang pb ON pb.kd_po = pd.kd_po AND pb.kd_brg = pd.kd_brg
-                                                                        WHERE pd.no_invoice = '$_GET[id]'
-                                                                        GROUP BY pd.kd_po, pd.kd_brg;
-                                                                        ");
+                                                                $sp ="SELECT pid.*, b.nama, SUM(pd.disc) as tot_disc, p.ppn, pb.jumlah_datang as jumlah_barang_datang, p.tarif_ppn
+                                                                        FROM
+                                                                        pembelian p 
+                                                                        join pembelian_detail pd on p.kd_beli = pd.kd_beli 
+                                                                        join pembelian_invoice pi on pi.kd_po = p.kd_po 
+                                                                        join pembelian_invoice_detail pid on pid.kd_po = pi.kd_po
+                                                                        join barang b on pid.kd_brg = b.kd_brg 
+                                                                        left join penerimaan_barang pb on pid.kd_brg =pb.kd_brg  and pid.kd_po =pb.kd_po 
+                                                                        WHERE pid.no_invoice = '$_GET[id]'
+                                                                        GROUP BY pid.kd_po, pid.kd_brg;
+                                                                        ";
+                                                                write_log("Query untuk mengambil detail invoice: " . $sp);        
+                                                                $sql1 = mysqli_query($koneksi,$sp );
 
                                                                 if (!$sql1) {
                                                                     die("query error" . mysqli_error($koneksi));
@@ -451,6 +459,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                 $(document).ready(function() {
                     // Saat jenis transaksi berubah
                     $('#metode_payment').change(function() {
+                        console.log("Jenis transaksi berubah, nilai: " + $(this).val()); // Log perubahan jenis transaksi
                         var kd_jenis = $(this).val();
 
                         // Kosongkan dulu pilihan akun
@@ -582,7 +591,7 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                 </section>
 
                 <!-- Main content -->
-                <section class="content wow fadeInUp" data-wow-duration=".2s" data-wow-delay=".1s">
+                <section class="content">
                     <div class="container-fluid">
                         <div class="card card-default">
                             <!-- /.card-header -->

@@ -1,0 +1,40 @@
+[08:58:23] [INFO]: Aksi payment accessed by user: 
+[08:58:23] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[08:58:23] [INFO]: Database connection established and helper functions included.
+[08:58:23] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0019
+[08:59:01] [INFO]: Aksi payment accessed by user: 
+[08:59:01] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[08:59:01] [INFO]: Database connection established and helper functions included.
+[08:59:01] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0146
+[09:00:28] [INFO]: Aksi payment accessed by user: 
+[09:00:28] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:00:28] [INFO]: Database connection established and helper functions included.
+[09:00:28] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0234
+[09:00:28] [INFO]: Aksi payment accessed by user: 
+[09:00:28] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:00:28] [INFO]: Database connection established and helper functions included.
+[09:00:28] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0234
+[09:00:48] [INFO]: Aksi payment accessed by user: 
+[09:00:48] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:00:48] [INFO]: Database connection established and helper functions included.
+[09:00:48] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0133
+[09:02:01] [INFO]: Aksi payment accessed by user: 
+[09:02:01] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:02:01] [INFO]: Database connection established and helper functions included.
+[09:02:01] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0108
+[09:02:15] [INFO]: Aksi payment accessed by user: 
+[09:02:15] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:02:15] [INFO]: Database connection established and helper functions included.
+[09:02:15] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0260
+[09:02:51] [INFO]: Aksi payment accessed by user: 
+[09:02:51] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:02:51] [INFO]: Database connection established and helper functions included.
+[09:02:51] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0207
+[09:03:26] [INFO]: Aksi payment accessed by user: 
+[09:03:26] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:03:26] [INFO]: Database connection established and helper functions included.
+[09:03:26] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0120
+[09:03:43] [INFO]: Aksi payment accessed by user: 
+[09:03:43] [INFO]: User Starttttt is authenticated. Processing action for route: payment_based_supplier and act: report
+[09:03:43] [INFO]: Database connection established and helper functions included.
+[09:03:43] [INFO]: location:../../main.php?route=payment_based_supplier&act=report&filter=supplier&nilai=SUPP-0207

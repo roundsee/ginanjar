@@ -157,27 +157,48 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                                         <th><input type="checkbox" id="select-all" onclick="toggle(this);"></th>
                                                                     <?php } ?>
                                                                     <th>No.</th>
-                                                                    <th><?php echo $j1; ?></th>
-                                                                    <!-- <th>Status</th> -->
-                                                                    <th><?php echo $j9; ?></th>
-                                                                    <th><?php echo $j3; ?></th>
-                                                                    <!-- <th><?php echo $j4; ?></th> -->
+                                                                    <th>Kode PO</th>
+                                                                    <th>No Faktur</th>
+                                                                  
+                                                                    <th>Tanggal PO</th>
+                                                                    <th>Kode Supplier</th>
                                                                     <th>Sub Total Pembelian</th>
-                                                                    <th>Total Dikon</th>
-                                                                    <th><?php echo $j7; ?></th>
+                                                                    <th>Total Diskon</th>
+                                                                    <th>Ppn</th>
                                                                     <th>Total</th>
+
                                                                     <th width="240px">Aksi</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <?php
 
-                                                                $sql1 = mysqli_query($koneksi, "SELECT $tabel.* , b.nama AS nama_barang , pd.kd_brg as kd_brg , pd.jumlah_pcs as jumlah_pcs
-                                                                from $tabel
-                                                                JOIN pembelian_detail pd ON pd.kd_beli = $tabel.kd_beli
-                                                                JOIN barang b ON b.kd_brg = pd.kd_brg
-                                                                 WHERE status_pembelian >= 1 AND  $tabel.kd_beli NOT LIKE '%KONS-%'
-                                                                 GROUP BY kd_po
+                                                                $sql1 = mysqli_query($koneksi, "SELECT 
+    p.kd_beli,
+    p.status_pembelian,
+    p.kd_po,
+    p.tgl_po,
+    p.kd_supp,
+    p.no_faktur,
+    sum(pd.disc) as tot_disc, 
+    sum((pd.jml * pd.jumlah_pcs) * pd.price) as tot_price,
+    sum((pd.jml * pd.jumlah_pcs) * pd.price) - sum(pd.disc) as grand_total,
+    CASE 
+        WHEN max(p.ppn) = 1 THEN 
+            (sum((pd.jml * pd.jumlah_pcs) * pd.price) - sum(pd.disc)) * max(tarif_ppn) / 100 
+        ELSE 0 
+    END as nilai_pjk,
+    CASE 
+        WHEN max(p.ppn) = 1 THEN 
+            ((sum((pd.jml * pd.jumlah_pcs) * pd.price) - sum(pd.disc)) * max(tarif_ppn) / 100) + (sum((pd.jml * pd.jumlah_pcs) * pd.price) - sum(pd.disc)) 
+        ELSE 
+            (sum((pd.jml * pd.jumlah_pcs) * pd.price) - sum(pd.disc)) 
+    END as sub_total
+FROM pembelian p
+JOIN pembelian_detail pd ON pd.kd_beli = p.kd_beli
+JOIN barang b ON b.kd_brg = pd.kd_brg
+WHERE p.status_pembelian >= 1 AND p.kd_beli NOT LIKE '%KONS-%'
+GROUP BY p.kd_po, p.tgl_po, p.kd_supp, p.kd_beli, p.status_pembelian,p.no_faktur
                                                                  ");
 
                                                                 $no = 1;
@@ -189,17 +210,17 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
                                                                 }
 
                                                                 while ($s1 = mysqli_fetch_array($sql1)) {
-                                                                    $sql2 = mysqli_query($koneksi, "SELECT *,sum(disc) as tot_disc, sum((jml*jumlah_pcs)*price) as tot_price from $tabel2 WHERE kd_beli='$s1[kd_beli]' ");
-                                                                    $s2 = mysqli_fetch_array($sql2);
+                                                                    // $sql2 = mysqli_query($koneksi, "SELECT *,sum(disc) as tot_disc, sum((jml*jumlah_pcs)*price) as tot_price from $tabel2 WHERE kd_beli='$s1[kd_beli]' ");
+                                                                    // $s2 = mysqli_fetch_array($sql2);
 
-                                                                    $grand_total = $s2['tot_price'] - $s2['tot_disc'];
+                                                                    // $grand_total = $s2['tot_price'] - $s2['tot_disc'];
 
-                                                                    if ($s1[$f7] == 1) {
-                                                                        $nilai_pjk = $grand_total * $s1['tarif_ppn'] / 100;
-                                                                    } else {
-                                                                        $nilai_pjk = 0;
-                                                                    }
-                                                                    $subtotal = $grand_total + $nilai_pjk;
+                                                                    // if ($s1[$f7] == 1) {
+                                                                    //     $nilai_pjk = $grand_total * $s1['tarif_ppn'] / 100;
+                                                                    // } else {
+                                                                    //     $nilai_pjk = 0;
+                                                                    // }
+                                                                    // $subtotal = $grand_total + $nilai_pjk;
 
                                                                     // if ($s1[$f7] == 1) {
                                                                     //     $nilai_pjk = $s2['tot_price'] * 11 / 100;
@@ -231,13 +252,14 @@ if (empty($_SESSION['username']) and empty($_SESSION['passuser'])) {
 
                                                                         <td><a href="main.php?route=<?php echo $view; ?>&act&id=<?php echo $s1[$f1]; ?>&asal=<?php echo $rute; ?>" title="Detail"><?php echo $s1['kd_po']; ?></a></td>
 
-                                                                        <td><?php echo $s1[$f9]; ?></td>
-                                                                        <td><?php echo $s1[$f3]; ?></td>
-                                                                        <!-- <td><?php echo $s1[$f4]; ?></td> -->
-                                                                        <td style="text-align:right;"><?php echo format_rupiah($s2['tot_price']); ?></td>
-                                                                        <td style="text-align:right;"><?php echo format_rupiah($s2['tot_disc']); ?></td>
-                                                                        <td style="text-align:right;"><?php echo format_rupiah($nilai_pjk); ?></td>
-                                                                        <td style="text-align:right;"><?php echo format_rupiah($subtotal); ?></td>
+                                                                        
+                                                                        <td><?php echo $s1['no_faktur']; ?></td>
+                                                                        <td><?php echo $s1['tgl_po']; ?></td>
+                                                                       <td><?php echo $s1['kd_supp']; ?></td>
+                                                                        <td style="text-align:right;"><?php echo format_rupiah($s1['tot_price']); ?></td>
+                                                                        <td style="text-align:right;"><?php echo format_rupiah($s1['tot_disc']); ?></td>
+                                                                        <td style="text-align:right;"><?php echo format_rupiah($s1['nilai_pjk']); ?></td>
+                                                                        <td style="text-align:right;"><?php echo format_rupiah($s1['sub_total']); ?></td>
                                                                         <?php if ($login_hash != 21) { ?>
                                                                             <td>
                                                                                 <?php if ($s1[$f8] == 1) { ?>

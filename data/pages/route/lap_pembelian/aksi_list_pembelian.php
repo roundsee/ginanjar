@@ -1,5 +1,7 @@
 <?php
 include '../../../../config/koneksi.php';
+include "logging.php";
+write_log("sgfdgfggfd");
 
 
 $tujuan='lap_pembelian';
